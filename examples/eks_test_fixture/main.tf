@@ -15,12 +15,12 @@ locals {
 
   worker_groups = [
     {
-      instance_type       = "t2.small"
+      instance_type       = "t2.large"
       additional_userdata = "echo foo bar"
       subnets             = "${join(",", data.aws_subnet_ids.private.ids)}"
     },
     {
-      instance_type                 = "t2.small"
+      instance_type                 = "t2.large"
       additional_userdata           = "echo foo bar"
       subnets                       = "${join(",", data.aws_subnet_ids.private.ids)}"
       additional_security_group_ids = "${aws_security_group.worker_group_mgmt_one.id},${aws_security_group.worker_group_mgmt_two.id}"
