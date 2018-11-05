@@ -1,0 +1,20 @@
+cluster_name = "awesome-eks-cluster-xxx"
+profile = "default"
+vpc_name = "vpcxxx"
+vpc_tag = "*Private*"
+region = "eu-xxx"
+map_accounts = ["<account id>"]
+map_roles = [
+    {
+      role_arn = "arn:aws:iam::66666666666:role/xxx"
+      username = "xxx"
+      group    = "system:masters"
+    },
+  ]
+map_users = [
+    {
+      user_arn = "arn:aws:iam::xxx:user/xxx"
+      username = "xxx"
+      group    = "system:masters"
+    },
+  ]
