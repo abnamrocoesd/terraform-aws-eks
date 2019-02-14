@@ -5,16 +5,84 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](http://semver.org/).
 
-## [[v1.8.0](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v1.7.0...HEAD)] - 2018-10-??]
+## Next release
+
+## [[v2.3.0?](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v2.2.0...HEAD)] - 2019-03-??]
 
 ### Added
 
-- A useful addition (slam dunk, @self 🔥)
-- `suspended_processes` to `worker_groups` input (by @bkmeneguello)
+- Write your awesome addition here (by @you)
 
 ### Changed
 
-- A subtle but thoughtful change. (Boomshakalaka, @self 🏀)
+ - Write your awesome change here (by @you)
+
+# History
+
+## [[v2.2.0](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v2.1.0...v2.2.0)] - 2019-02-07]
+
+### Added
+
+- Ability to specify a permissions_boundary for IAM roles (by @dylanhellems)
+- Ability to configure force_delete for the worker group ASG (by @stefansedich)
+- Ability to configure worker group ASG tags (by @stefansedich)
+- Added EBS optimized mapping for the g3s.xlarge instance type (by @stefansedich)
+- `enabled_metrics` input (by @zanitete)
+- write_aws_auth_config to input (by @yutachaos)
+
+### Changed
+
+- Change worker group ASG to use create_before_destroy (by @stefansedich)
+- Fixed a bug where worker group defaults were being used for launch template user data (by @leonsodhi-lf)
+- Managed_aws_auth option is true, the aws-auth configmap file is no longer created, and write_aws_auth_config must be set to true to generate config_map. (by @yutachaos)
+
+## [[v2.1.0](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v2.0.0...v2.1.0)] - 2019-01-15]
+
+### Added
+
+- Initial support for worker groups based on Launch Templates (by @skang0601)
+
+### Changed
+
+- Updated the `update_config_map_aws_auth` resource to trigger when the EKS cluster endpoint changes. This likely means that a new cluster was spun up so our ConfigMap won't exist (fixes #234) (by @elatt)
+- Removed invalid action from worker_autoscaling iam policy (by @marcelloromani)
+- Fixed zsh-specific syntax in retry loop for aws auth config map (by @marcelloromani)
+- Fix: fail deployment if applying the aws auth config map still fails after 10 attempts (by @marcelloromani)
+
+## [[v2.0.0](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v1.8.0...v2.0.0)] - 2018-12-14]
+
+### Added
+
+- (Breaking Change) New input variables `map_accounts_count`, `map_roles_count` and `map_users_count` to allow using computed values as part of `map_accounts`, `map_roles` and `map_users` configs (by @chili-man on behalf of OpenGov).
+- (Breaking Change) New variables `cluster_create_security_group` and `worker_create_security_group` to stop `value of 'count' cannot be computed` error.
+- Added ability to choose local-exec interpreter (by @rothandrew)
+
+### Changed
+
+- Added `--with-aggregate-type-defaults` option to terraform-docs (by @max-rocket-internet)
+- Updated AMI ID filtering to only filter AMIs from current cluster k8s version (by @max-rocket-internet)
+- Added `pre-commit-terraform` git hook to automatically create documentation of inputs/outputs (by @antonbabenko)
+- Travis fixes (by @RothAndrew)
+- Fixed some Windows compatibility issues (by @RothAndrew)
+
+## [[v1.8.0](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v1.7.0...v1.8.0)] - 2018-12-04]
+
+### Added
+
+-  Support for using AWS Launch Templates to define autoscaling groups (by @skang0601)
+- `suspended_processes` to `worker_groups` input (by @bkmeneguello)
+- `target_group_arns` to `worker_groups` input (by @zihaoyu)
+- `force_detach_policies` to `aws_iam_role` `cluster` and `workers` (by @marky-mark)
+- Added sleep while trying to apply the kubernetes configurations if failed, up to 50 seconds (by @rmakram-ims)
+- `cluster_create_security_group` and `worker_create_security_group`. This allows using computed cluster and worker security groups. (by @rmakram-ims)
+
+### Changed
+
+- new variables worker_groups_launch_template and worker_group_count_launch_template (by @skang0601)
+- Remove aws_iam_service_linked_role (by @max-rocket-internet)
+- Adjust the order and correct/update the ec2 instance type info. (@chenrui333)
+- Removed providers from `main.tf`. (by @max-rocket-internet)
+- Removed `configure_kubectl_session` references in documentation [#171](https://github.com/terraform-aws-modules/terraform-aws-eks/pull/171) (by @dominik-k)
 
 ## [[v1.7.0](https://github.com/terraform-aws-modules/terraform-aws-eks/compare/v1.6.0...v1.7.0)] - 2018-10-09]
 
@@ -27,7 +95,6 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- A subtle but thoughtful change. (Boomshakalaka, @self 🏀)
 - fix default worker subnets not working (by @erks)
 - fix default worker autoscaling_enabled not working (by @erks)
 - Cosmetic syntax changes to improve readability. (by @max-rocket-internet)
